@@ -1,6 +1,7 @@
 {
-  "name": "thlt-nuxt-web",
-  "version": "1.0.0",
+  "name": "nuxt-moban",
+  "author": "siYuan",
+  "version": "1.1.0",
   "private": true,
   "scripts": {
     "dev": "nuxt",
@@ -10,15 +11,27 @@
     "test": "jest"
   },
   "dependencies": {
+    "@nuxtjs/axios": "^5.12.2",
+    "@nuxtjs/proxy": "^2.0.1",
     "@nuxtjs/pwa": "^3.0.2",
+    "axios": "^0.21.0",
     "core-js": "^3.6.5",
     "nuxt": "^2.14.6"
   },
   "devDependencies": {
+    "@nuxtjs/style-resources": "^1.0.0",
     "@vue/test-utils": "^1.1.0",
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "^26.5.0",
     "jest": "^26.5.0",
+    "less": "^3.12.2",
+    "less-loader": "^7.1.0",
     "vue-jest": "^3.0.4"
+  },
+  "config": {
+    "nuxt": {
+      "host": "127.0.0.1",
+      "port": "1000"
+    }
   }
 }

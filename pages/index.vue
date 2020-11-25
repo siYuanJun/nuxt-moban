@@ -1,73 +1,53 @@
 <template>
-  <div class="container">
-    <div>
-      <Logo />
-      <h1 class="title">
-        thlt-nuxt-web
-      </h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
+    <div class="container">
+        <div class="header-lnline">
+            <ul class="nav flex justify-center">
+                <li>
+                    <nuxt-link :to="{name:'index'}" class="text-white">首页</nuxt-link>
+                </li>
+                <li>
+                    <nuxt-link :to="{name:'about'}" class="text-white">关于</nuxt-link>
+                </li>
+            </ul>
+        </div>
+        <div class="flex justify-center margin-top">
+            <div class="padding text-df text-black">{{ip}}</div>
+        </div>
     </div>
-  </div>
 </template>
 
 <script>
-export default {}
+  import { getData } from "../plugins/axiosA";
+
+  export default {
+    data() {
+      return {
+        ip: "",
+      }
+    },
+    created() {
+      // this.getData()
+      this.asyncData()
+    },
+    methods: {
+      getData() {
+        console.log("接口初始化")
+        getData('duanzi', {page: 1}, 'get').then(res => {
+          console.log(res)
+        }).catch(res => {
+          console.log(res)
+        })
+      },
+
+      asyncData() {
+        let that = this
+        that.$axios.$get('duanzi').then(res => {
+          console.log(res)
+        })
+      }
+    }
+  }
 </script>
 
-<style>
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.title {
-  font-family:
-    'Quicksand',
-    'Source Sans Pro',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
-}
+<style scoped lang="less">
 </style>

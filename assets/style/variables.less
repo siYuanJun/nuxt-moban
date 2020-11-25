@@ -1,0 +1,45 @@
+/*
+全局变量
+*/
+@---thime-color: #45b263;
+
+/*
+组件函数
+*/
+
+// 慢动作动画
+.function-transition-all-ease(@sin: 0.3s) {
+  transition: all @sin cubic-bezier(0.25, 0.1, 0.82, 0.44) 0s;
+  -o-transition: all @sin cubic-bezier(0.25, 0.1, 0.82, 0.44) 0s;
+  -ms-transition: all @sin cubic-bezier(0.25, 0.1, 0.82, 0.44) 0s;
+  -moz-transition: all @sin cubic-bezier(0.25, 0.1, 0.82, 0.44) 0s;
+  -webkit-transition: all @sin cubic-bezier(0.25, 0.1, 0.82, 0.44) 0s;
+}
+
+// 放大旋转动画
+.function-transform-scale-rotate(@scale: 0.5, @rotate: 9deg) {
+  transform:scale(@scale, @scale) rotate(@rotate);
+  -ms-transform:scale(@scale, @scale) rotate(@rotate); /* Internet Explorer */
+  -moz-transform:scale(@scale, @scale) rotate(@rotate); /* Firefox */
+  -webkit-transform:scale(@scale, @scale) rotate(@rotate); /* Safari 和 Chrome */
+  -o-transform:scale(@scale, @scale) rotate(@rotate); /* Opera */
+}
+
+// 渐变色线条
+.function-border-line(@width: 40px, @height: 5px, @to: to right) {
+  width: @width;
+  height: @height;
+  background: @---thime-color;
+  &.lr {
+    background: linear-gradient(@to, #def1e3, @---thime-color);
+    background: -moz-linear-gradient(@to, #def1e3, @---thime-color);
+    background: -webkit-linear-gradient(@to, #def1e3, @---thime-color);
+    background: -o-linear-gradient(@to, #def1e3, @---thime-color);
+  }
+  &.rl {
+    background: linear-gradient(@to, @---thime-color, #def1e3);
+    background: -moz-linear-gradient(@to, @---thime-color, #def1e3);
+    background: -webkit-linear-gradient(@to, @---thime-color, #def1e3);
+    background: -o-linear-gradient(@to, @---thime-color, #def1e3);
+  }
+}
