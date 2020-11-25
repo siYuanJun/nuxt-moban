@@ -1,8 +1,7 @@
 # nuxt-moban
+> 关于 nuxtJS 项目开发快捷模板
 
 ## Build Setup
-
-> 关于 nuxtJS 项目开发快捷模板
 
 ```bash
 # install dependencies
