@@ -1,5 +1,5 @@
 # nuxt-moban
-> 关于 nuxtJS 项目开发快捷模板
+> NuxtJS development shortcut box
 
 ## Build Setup
 
