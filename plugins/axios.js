@@ -1,4 +1,8 @@
 export default function ({$axios, redirect}) {
+
+  // $axios.setHeader('Authorization-Token', 'xxxxx')
+  // $axios.setHeader('Content-Type', 'application/x-www-form-urlencoded')
+
   $axios.onResponse(res => {
     return res
   })
@@ -8,15 +12,13 @@ export default function ({$axios, redirect}) {
     switch (code) {
       //错误代码
       case 401:
-        sessionStorage.clear();
         redirect('/login')
         break;
       case 403:
-        sessionStorage.clear();
         redirect('/login')
         break;
       case 404:
-        sessionStorage.clear();
+        // sessionStorage.clear();
         break;
       case 500:
         Message.error("Server exception");
@@ -33,5 +35,5 @@ export default function ({$axios, redirect}) {
       default:
         break;
     }
-  });
+  })
 }

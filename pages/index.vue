@@ -1,48 +1,38 @@
 <template>
     <div class="container">
-        <div class="header-lnline">
-            <ul class="nav flex justify-center">
-                <li>
-                    <nuxt-link :to="{name:'index'}" class="text-white">首页</nuxt-link>
-                </li>
-                <li>
-                    <nuxt-link :to="{name:'about'}" class="text-white">关于</nuxt-link>
+        <Headers></Headers>
+        <div class="flex justify-center margin-top">
+            <ul class="wp-xs">
+                <li class="text-sm text-black margin-top-sm"
+                    v-for="(item, index) in parmdata.items"
+                    @key="index">
+                    <nuxt-link class="text-black" :to="{name:'article-id', params: {id: item.passid}}">{{item.title}}
+                    </nuxt-link>
                 </li>
             </ul>
-        </div>
-        <div class="flex justify-center margin-top">
-            <div class="padding text-df text-black">{{ip}}</div>
         </div>
     </div>
 </template>
 
 <script>
-  import { getData } from "../plugins/axiosA";
-
   export default {
     data() {
       return {
         ip: "",
+        parmdata: {
+          items: {}
+        }
       }
     },
     created() {
-      // this.getData()
-      this.asyncData()
+      // console.log(this.$config)
+      this.init()
     },
     methods: {
-      getData() {
-        console.log("接口初始化")
-        getData('duanzi', {page: 1}, 'get').then(res => {
-          console.log(res)
-        }).catch(res => {
-          console.log(res)
-        })
-      },
-
-      asyncData() {
+      init() {
         let that = this
-        that.$axios.$get('duanzi').then(res => {
-          console.log(res)
+        that.$axios.$get('duanzi', {params: {page: 1}}).then(res => {
+          that.parmdata = res
         })
       }
     }

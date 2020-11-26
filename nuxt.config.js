@@ -1,7 +1,7 @@
 export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
-    title: 'nuxt-moban',
+    title: process.env.VUE_APP_TITLE,
     meta: [
       {charset: 'utf-8'},
       {name: 'viewport', content: 'width=device-width, initial-scale=1'},
@@ -39,29 +39,33 @@ export default {
 
   // axios 警告:当代理(proxy)选项被启用时，browserBaseURL 的默认值变成前缀，而不是 baseurl 定义用于客户端请求的基本URL。环境变量 API_URL_BROWSER 可以用来覆盖 browserBaseURL
   axios: {
-    proxy: true,
+    proxy: false,
     prefix: '/api',
-    baseURL: 'http://www.lvtcn.com/api'
+    baseURL: process.env.BROWSER_BASE_URL
   },
 
+  // 该对象的 objectValue 可以使用 this.$config 从客户端和服务器访问
   publicRuntimeConfig: {
-    axios: {
-      browserBaseURL: process.env.BROWSER_BASE_URL
-    }
+    // axios: {
+    //   browserBaseURL: process.env.BROWSER_BASE_URL
+    // },
+    apiSecret: 'xxxxx'
   },
 
+  // 此对象的 objectValue 只能使用 $config 从服务器访问。覆盖服务器的 publicRuntimeConfig。
   privateRuntimeConfig: {
     axios: {
-      baseURL: process.env.BASE_URL
-    }
+      browserBaseURL: process.env.BASE_URL
+    },
+    apiSecret: process.env.API_SECRET
   },
 
-  // proxy
+  // test proxy
   proxy: {
     '/api': {
-      target: 'http://www.lvtcn.com',
+      target: process.env.BROWSER_BASE_URL,
       // secure: false,  // 如果是 https 接口，需要配置这个参数
-      changeOrigin: true, // 为 false 个别项目接口无法访问
+      changeOrigin: true, // 如关闭可能接口出现异常
       pathRewrite: {
         '^/api': 'api',
         changeOrigin: true
